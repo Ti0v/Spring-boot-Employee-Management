@@ -1,6 +1,6 @@
 package com.TheCompany.Comp.Employy;
 
-import com.TheCompany.Comp.Employy.Eror.TheresNoElimests;
+import com.TheCompany.Comp.Employy.Eror.CustomeException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,7 +18,7 @@ public class EmployeeService {
         if(!repostory.findAll().isEmpty()){
             return  repostory.findAll();
         }else {
-            throw new TheresNoElimests("The is No Employee");
+            throw new CustomeException("The is No Employee");
         }
 
 
@@ -30,17 +30,16 @@ public class EmployeeService {
     }
 
     public void InsetEmp(Employ employ){
+
         repostory.save(employ);
 
     }
     public Optional<Employ> findByID(int id){
         var current = repostory.findById(id);
-        if(current.isPresent()){
+        if(current.isPresent())
             return current;
-        }else {
-
-            throw new TheresNoElimests("ID: "+id+" Not found");
-        }
+        else
+            throw new CustomeException(" The ID: "+id+" Not found");
     }
    public void delete(int id){
         findByID(id);

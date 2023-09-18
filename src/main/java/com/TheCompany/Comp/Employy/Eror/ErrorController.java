@@ -6,12 +6,12 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
 @ControllerAdvice
-public class ErorController
+public class ErrorController
 
 {
-@ExceptionHandler({TheresNoElimests.class})
-    public ResponseEntity<?>responseEntity(TheresNoElimests theresNoElimests){
-        ResponseExceptions responseExceptions = new ResponseExceptions(theresNoElimests.getName());
+@ExceptionHandler({CustomeException.class})
+    public ResponseEntity<?>responseEntity(CustomeException customeException){
+        ResponseExceptions responseExceptions = new ResponseExceptions(customeException.getName());
         return  ResponseEntity.status(HttpStatus.NOT_FOUND).body(responseExceptions);
     }
 }

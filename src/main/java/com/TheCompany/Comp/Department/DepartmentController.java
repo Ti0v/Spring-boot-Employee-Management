@@ -1,6 +1,5 @@
 package com.TheCompany.Comp.Department;
 
-import com.TheCompany.Comp.Employy.Employ;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -32,6 +31,11 @@ public class DepartmentController {
     @PostMapping
     public Department InsetDep(@RequestBody Department department) {
         return service.InsetDep(department);
+
+    }
+    @PutMapping("/update")
+    public  Department UpdateDepartmnet(@RequestBody Department department){
+        return service.Update(department);
 
     }
 

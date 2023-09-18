@@ -11,36 +11,20 @@ import lombok.Setter;
 import java.util.List;
 
 
+@Setter
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
 @Table
 public class Department {
-    @Id
-    @GeneratedValue
-    private  int id;
-
-
-   @Column(length = 20 ,unique = true)
-    private  String name;
-
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setEmploys(List<Employ> employs) {
-        this.employs = employs;
-    }
-
-    @OneToMany(mappedBy = "department")
-   List<Employ> employs;
-
-
+     @Id
+     @GeneratedValue
+     private  int id;
+     @Column(length = 20 ,unique = false)
+     private  String name;
+     @OneToMany(mappedBy = "department",cascade = CascadeType.ALL)
+     @JsonIgnore
+     private List<Employ> employs;
 
 }
